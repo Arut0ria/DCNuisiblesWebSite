@@ -1,7 +1,8 @@
-import { Environment, PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { DragControls, Environment, OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Bloom, EffectComposer, LensFlare, ToneMapping } from "@react-three/postprocessing";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type Object3D } from "three";
 
 function LogoModel() {
@@ -50,6 +51,9 @@ function LogoCanvas() {
         <LogoModel />
 
         <Environment preset="apartment" environmentIntensity={0.4} background={false} />
+        <EffectComposer>
+          <ToneMapping />
+        </EffectComposer>
       </Canvas>
     </div>
   );
