@@ -1,12 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Montserrat", "sans-serif"
+  --font-roboto: "Roboto", sans-serif;
+  --font-saria: "Saria", sans-serif;
 }
 
 :root, html, body {
   @apply
     m-0 p-0 w-full h-full
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .page-background {
@@ -27,14 +35,33 @@
     blur-3xl opacity-25
 }
 
+h1 {
+  @apply
+    font-roboto font-extrabold tracking-wide
+    text-4xl lg:text-5xl
+    bg-gradient-to-r from-white to-gray-300
+    bg-clip-text text-transparent
+    drop-shadow-xl/50
+}
+
 h2 {
   @apply
-    font-heading font-bold text-4xl
+    font-saria font-medium
+    text-4xl xl:text-6xl
+}
+
+p {
+  @apply
+    font-saria font-normal
+    text-base lg:text-lg xl:text-2xl
+}
+
+a {
+  @apply
+    hover:cursor-pointer
 }
 
 .card-section {
   @apply
-    border-2 rounded-md border-black
-    p-4
-    bg-gray-100
+    text-gray-200
 }

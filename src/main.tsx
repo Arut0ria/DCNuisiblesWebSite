@@ -11,7 +11,10 @@ createRoot(document.getElementById('root')!).render(
     </div>
 
       {/* Content */}
-      <main className='p-4 relative'>
+      <main className="
+        p-4 md:px-16 lg:px-52
+        relative
+      ">
         <App />
       </main>
   </StrictMode>,
