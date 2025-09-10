@@ -1,8 +1,8 @@
-import { DragControls, Environment, OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { Environment, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Bloom, EffectComposer, LensFlare, ToneMapping } from "@react-three/postprocessing";
+import { EffectComposer, ToneMapping } from "@react-three/postprocessing";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { type Object3D } from "three";
 
 function LogoModel() {
