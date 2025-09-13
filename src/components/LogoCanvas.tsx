@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { type Object3D } from "three";
 
 function LogoModel() {
-  const { scene } = useGLTF("/logo.glb");
+  const { scene } = useGLTF("/logo_bake.glb");
   const ref = useRef<Object3D | null>(null);
 
   useEffect(() => {
@@ -44,13 +44,23 @@ function LogoCanvas() {
 
         <directionalLight
           position={[-5, 5, 1]}
-          intensity={5.0}
+          intensity={3.0}
+          castShadow
+        />
+        <directionalLight
+          position={[5, 5, 1]}
+          intensity={1.5}
+          castShadow
+        />
+        <directionalLight
+          position={[0, -5, 1]}
+          intensity={0.5}
           castShadow
         />
 
         <LogoModel />
 
-        <Environment preset="apartment" environmentIntensity={0.4} background={false} />
+        {/* <Environment preset="apartment" environmentIntensity={0.4} background={false} /> */}
         <EffectComposer>
           <ToneMapping />
         </EffectComposer>
