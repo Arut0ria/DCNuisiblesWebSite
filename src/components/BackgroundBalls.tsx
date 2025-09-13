@@ -43,7 +43,7 @@ function BackgroundBalls() {
   });
 
   return (<div ref={containerRef} className="absolute inset-0 -z-10 overflow-hidden">
-    {Array.from({ length: window.innerWidth > 1080 ? 30 : 10 }).map((_, index) => (
+    {Array.from({ length: 10}).map((_, index) => (
       <div key={index} className={`background-ball
         ${gradients[Math.floor(Math.random() * gradients.length)]}
       `}>
