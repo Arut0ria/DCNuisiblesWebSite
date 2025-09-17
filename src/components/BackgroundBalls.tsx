@@ -2,12 +2,12 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap";
 
 const gradients = [
-  "bg-orange-400",
+  // "bg-orange-400",
   "bg-orange-800",
   "bg-amber-700"
 ];
 
-function BackgroundBalls() {
+export default function BackgroundBalls() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -18,13 +18,13 @@ function BackgroundBalls() {
 
     balls.forEach((ball) => {
       gsap.set(ball, {
-        x: gsap.utils.random(0, window.innerWidth),
-        y: gsap.utils.random(0, window.innerWidth)
+        x: `${gsap.utils.random(0, 100)}lvw`,
+        y: `${gsap.utils.random(0, 100)}lvh`
       });
 
       gsap.to(ball, {
-        x: gsap.utils.random(0, window.innerWidth),
-        y: gsap.utils.random(0, window.innerWidth),
+        x: `${gsap.utils.random(0, 100)}lvw`,
+        y: `${gsap.utils.random(0, 100)}lvh`,
         yoyo: true,
         repeat: -1,
         duration: gsap.utils.random(10, 12),
@@ -42,8 +42,8 @@ function BackgroundBalls() {
     });
   });
 
-  return (<div ref={containerRef} className="absolute inset-0 -z-10 overflow-hidden">
-    {Array.from({ length: 10}).map((_, index) => (
+  return (<div ref={containerRef} className="absolute inset-0 overflow-hidden">
+    {Array.from({ length: 5 }).map((_, index) => (
       <div key={index} className={`background-ball
         ${gradients[Math.floor(Math.random() * gradients.length)]}
       `}>
@@ -51,5 +51,3 @@ function BackgroundBalls() {
     ))}
   </div>)
 }
-
-export default BackgroundBalls
