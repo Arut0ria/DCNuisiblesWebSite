@@ -10,12 +10,12 @@ createRoot(document.getElementById('root')!).render(
       <BackgroundBalls />
     </div>
 
-      {/* Content */}
-      <main className="
-        p-4 md:px-16 lg:px-52
-        relative
-      ">
-        <App />
-      </main>
+    {/* Content */}
+    <main className="
+      p-4 px-16 xl:px-52
+      relative
+    ">
+      <App />
+    </main>
   </StrictMode>,
 )
