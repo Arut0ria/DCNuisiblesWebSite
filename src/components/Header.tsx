@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap";
+import { ModeToggle } from "./ModeToggle";
+import { Button } from "./ui/button";
 
 function Header() {
   const headerRef = useRef<HTMLHeadElement | null>(null);
@@ -18,27 +20,36 @@ function Header() {
     });
   }, []);
 
+  function scrollToSection(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (<header ref={headerRef} className="
-    fixed inset-x-0
+    sticky w-full top-2
     flex justify-center flex-wrap
     z-10
   ">
     <ul className="
-      bg-gray-950 shadow-2xl
+      bg-background shadow-2xl
       rounded-full
       py-2 px-5
-      flex gap-4 items-center justify-between
-      drop-shadow-xl/25
+      flex gap-1 lg:gap-4 items-center justify-between
+      shrink-0
 
-      text-white text-xl
+      shadow-accent
+      text-foreground
     ">
-      <li><img src="logo.png" /></li>
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li className="shrink-0"><img src="logo.png" /></li>
+      <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("mission")}>Missions</Button></li>
+      <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("services")}>Services</Button></li>
+      <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("contact")}>Contact</Button></li>
+      <li><ModeToggle /></li>
     </ul>
     <h1 className="
-      basis-full text-center m-2 lg:m-8
+      basis-full text-center lg:m-8
     ">
       DCNuisibles
     </h1>
