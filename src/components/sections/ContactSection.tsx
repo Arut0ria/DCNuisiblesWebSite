@@ -3,9 +3,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "../ui/input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, MessageSquareText, Phone, User, UserPen } from "lucide-react";
 import { z } from "zod";
 import { Button } from "../ui/button";
-import { Mail, MessageSquareText, Phone, User, UserPen } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
@@ -17,9 +17,9 @@ const formSchema = z.object({
     .max(256, { error: "Le prénom doit faire moins de 256 charactères" }),
   mail: z.email().optional(),
   phone: z.string().optional(),
-  message: z.string({error: "Veuillez spécifier votre demande"}).
-    min(32, {error: "Le message doit faire plus de 32 charactères"})
-    .max(2048, {error: "Le message ne doit pas faire plus de 2048 charactères"}),
+  message: z.string({ error: "Veuillez spécifier votre demande" }).
+    min(32, { error: "Le message doit faire plus de 32 charactères" })
+    .max(2048, { error: "Le message ne doit pas faire plus de 2048 charactères" }),
 });
 
 export default function ContactSection() {
@@ -28,9 +28,37 @@ export default function ContactSection() {
     defaultValues: {},
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // TODO
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Is script here...
+    if (!window.grecaptcha?.enterprise) {
+      console.error("reCAPTCHA non chargé");
+      return;
+    }
+
+    // Ask for token
+    const token = await window.grecaptcha.enterprise.execute(
+      "6LdRx80rAAAAALytDTcMKOc0K9ZA_GHNNm9leXjg",
+      { action: "submit" }
+    );
+
+
+    // Send to api
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...values,
+        captchaToken: token
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("Erreur API", await res.text());
+    } else {
+      console.log("Message envoyé !");
+    }
   }
 
   return (<section id="contact" className="grid grid-cols-1 gap-4">
@@ -57,7 +85,7 @@ export default function ContactSection() {
               <FormItem>
                 <FormLabel className="text-card-foreground" ><User /> Nom *</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="..." {...field} className="
+                  <Input type="text" placeholder="" {...field} className="
                     text-card-foreground
                   "/>
                 </FormControl>
@@ -73,7 +101,7 @@ export default function ContactSection() {
               <FormItem>
                 <FormLabel className="text-card-foreground"><UserPen /> Prénom *</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="..." {...field} className="
+                  <Input type="text" placeholder="" {...field} className="
                     text-card-foreground
                   "/>
                 </FormControl>
@@ -89,7 +117,7 @@ export default function ContactSection() {
               <FormItem>
                 <FormLabel className="text-card-foreground" ><Mail /> Mail</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="..." {...field} className="
+                  <Input type="email" placeholder="" {...field} className="
                     text-card-foreground
                   "/>
                 </FormControl>
@@ -105,7 +133,7 @@ export default function ContactSection() {
               <FormItem>
                 <FormLabel className="text-card-foreground" ><Phone /> Tél</FormLabel>
                 <FormControl>
-                  <Input type="tel" placeholder="..." {...field} className="
+                  <Input type="tel" placeholder="" {...field} className="
                     text-card-foreground
                   "/>
                 </FormControl>
