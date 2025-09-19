@@ -44,7 +44,7 @@ export default function ContactSection() {
 
     // Send to api
     // const res = await fetch("http://localhost:8787", {
-      const res = await fetch("http://api.dcnuisibles.fr/contact", {
+      const res = await fetch("https://api.dcnuisibles.fr/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
