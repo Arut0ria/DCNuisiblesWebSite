@@ -26,11 +26,12 @@ function MissionSection() {
           text-white/80 leading-tight
           text-center md:text-justify
         ">
-          DCNuisibles protège votre maison et votre entreprise des nuisibles.
+          DC Nuisibles protège votre maison et votre entreprise des nuisibles.
           Interventions rapides, efficaces et respectueuses des normes sanitaires.
         </p>
         <Button size="lg" variant="outline" className="
           mx-auto md:ml-0
+          my-2
           text-foreground
         ">
           Nous contacter

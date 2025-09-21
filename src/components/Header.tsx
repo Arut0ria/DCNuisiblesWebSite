@@ -42,16 +42,16 @@ function Header() {
       shadow-accent
       text-foreground
     ">
-      <li className="shrink-0"><img src="logo.png" /></li>
+      <li className="shrink-0"><img src="logo.png" alt="Logo de l'entreprise DC Nuisibles" /></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("mission")}>Missions</Button></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("services")}>Services</Button></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("contact")}>Contact</Button></li>
       <li><ModeToggle /></li>
     </ul>
     <h1 className="
-      basis-full text-center lg:m-8
+      basis-full text-center m-4 lg:m-8
     ">
-      DCNuisibles
+      DC Nuisibles
     </h1>
   </header>)
 }
