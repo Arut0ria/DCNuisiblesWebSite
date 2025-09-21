@@ -7,6 +7,7 @@ import { Mail, MessageSquareText, Phone, User, UserPen } from "lucide-react";
 import { z } from "zod";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   nom: z.string({ error: "Veuillez spécifier un nom" })
@@ -15,8 +16,8 @@ const formSchema = z.object({
   prenom: z.string({ error: "Veuillez spécifier un prénom" })
     .min(2, { error: "Le prénom doit faire plus de 2 charactères" })
     .max(256, { error: "Le prénom doit faire moins de 256 charactères" }),
-  mail: z.email().optional(),
-  phone: z.string().optional(),
+  mail: z.email({ error: "Format de mail invalide" }).optional(),
+  phone: z.string({ error: "Numéro de téléphone invalide" }).optional(),
   message: z.string({ error: "Veuillez spécifier votre demande" }).
     min(32, { error: "Le message doit faire plus de 32 charactères" })
     .max(2048, { error: "Le message ne doit pas faire plus de 2048 charactères" }),
@@ -37,28 +38,38 @@ export default function ContactSection() {
 
     // Ask for token
     const token = await window.grecaptcha.enterprise.execute(
-      "6LdRx80rAAAAALytDTcMKOc0K9ZA_GHNNm9leXjg",
+      `${import.meta.env.VITE_SITE_KEY}`,
       { action: "submit" }
     );
 
 
     // Send to api
-    // const res = await fetch("http://localhost:8787", {
-      const res = await fetch("https://api.dcnuisibles.fr/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...values,
-        captchaToken: token
-      }),
-    });
+    let res: Response | null = null;
+    try {
+      res = await fetch(`${import.meta.env.VITE_API_URL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          captchaToken: token
+        }),
+      });
+    } catch (e) {
+      toast((e as Error).message);
+    } finally {
+      if (!res) {
+        toast("Pas de réponse de l'API");
+        return;
+      }
 
-    if (!res.ok) {
-      console.error("Erreur API", await res.text());
-    } else {
-      console.log("Message envoyé !");
+      if (!res.ok) {
+        toast(`Erreur API : ${res.statusText}`);
+      }
+      else {
+        toast("Message envoyé !");
+      }
     }
   }
 

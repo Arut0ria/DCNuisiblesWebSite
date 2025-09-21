@@ -12,7 +12,7 @@ export default function Recaptcha() {
   useEffect(() => {
     if (!document.querySelector(`script[src^="${baseUrl}"]`)) {
       const url = new URL(baseUrl);
-      url.searchParams.append("render", "6LdRx80rAAAAALytDTcMKOc0K9ZA_GHNNm9leXjg");
+      url.searchParams.append("render", `${import.meta.env.VITE_SITE_KEY}`);
 
       const script = document.createElement("script");
       script.src = url.toString();
