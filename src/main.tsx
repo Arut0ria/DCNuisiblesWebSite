@@ -12,7 +12,6 @@ createRoot(document.getElementById('root')!).render(
 
     {/* Content */}
     <main className="
-      p-4 px-8 xl:px-52
       relative
     ">
       <App />
