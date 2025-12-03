@@ -172,9 +172,13 @@ export default function ContactSection() {
             )}
           />
         </div>
-
+        <div className="my-4">
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
+          <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
+        </div>
         <div className="
-          flex items-center justify-center
+          flex items-center justify-center flex-wrap
           gap-2
         ">
           <Button type="reset" size="lg" variant="outline" className="text-foreground">

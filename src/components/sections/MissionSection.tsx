@@ -2,6 +2,13 @@ import LogoCanvas from "../LogoCanvas";
 import { Button } from "../ui/button";
 
 function MissionSection() {
+  function scrollToSection(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <section id="mission" className="
       flex flex-wrap-reverse
@@ -33,7 +40,7 @@ function MissionSection() {
           mx-auto md:ml-0
           my-2
           text-foreground
-        ">
+        " onClick={() => scrollToSection("contact")}>
           Nous contacter
         </Button>
       </div>

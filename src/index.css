@@ -54,14 +54,26 @@ h2 {
     font-saria font-medium
 }
 
+h3 {
+  @apply
+    font-roboto font-semibold tracking-wide
+    text-lg lg:text-xl
+}
+
 p {
   @apply
     font-saria font-normal
 }
 
 a {
+  
   @apply
+    text-primary
     hover:cursor-pointer
+}
+
+.grecaptcha-badge { 
+  visibility: hidden; 
 }
 
 .text-section {
