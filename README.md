@@ -16,3 +16,10 @@ This codebase includes all pages, assets, and styles used to run the production 
 - Serve as a version-controlled backup of the production site  
 
 The repository is **not intended to be reused as a generic template**, as it contains the specific UI, branding, and content of the DC Nuisibles business.
+
+---
+
+## License
+
+All original code and assets are proprietary to DC Nuisibles and may only be viewed for reference. 
+Third-party libraries used in this project are subject to their own licenses (MIT, etc.) as listed in NOTICE.md.
