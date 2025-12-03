@@ -19,7 +19,7 @@ The repository is **not intended to be reused as a generic template**, as it con
 
 ---
 
-## License
+## 📜 License
 
 All original code and assets are proprietary to DC Nuisibles and may only be viewed for reference. 
 Third-party libraries used in this project are subject to their own licenses (MIT, etc.) as listed in NOTICE.md.
