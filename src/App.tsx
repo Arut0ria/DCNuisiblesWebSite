@@ -1,16 +1,27 @@
+import { lazy, Suspense } from 'react'
 import Header from './components/Header'
-import Recaptcha from './components/Recaptcha'
-import ContactSection from './components/sections/ContactSection'
 import MissionSection from './components/sections/MissionSection'
-import ServicesSection from './components/sections/ServicesSection'
 import { ThemeProvider } from './components/ThemeProvider'
 import { Separator } from './components/ui/separator'
 import { Toaster } from './components/ui/sonner'
-import Footer from './Footer'
+import Loading from './components/Spinner'
+
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+
+gsap.registerPlugin(useGSAP);
 
 function App() {
+  const ServicesSection = lazy(() => import('./components/sections/ServicesSection'));
+
+  const ContactSection = lazy(() => import('./components/sections/ContactSection'));
+  const Footer = lazy(() => import('./components/Footer'));
+  const Recaptcha = lazy(() => import('./components/Recaptcha'));
+
   return (<>
-    <Recaptcha />
+    <Suspense>
+      <Recaptcha />
+    </Suspense>
     <ThemeProvider>
       <div className="
         p-4 px-8 xl:px-52
@@ -18,13 +29,24 @@ function App() {
       ">
         <Header />
         <MissionSection />
+
         <Separator className="my-8 md:mb-8 bg-secondary-foreground/80" />
-        <ServicesSection />
+
+        <Suspense fallback={<Loading />}>
+          <ServicesSection />
+        </Suspense>
+
         <Separator className="my-8 md:mb-8 bg-secondary-foreground/80" />
-        <ContactSection />
+
+        <Suspense fallback={<Loading />}>
+          <ContactSection />
+        </Suspense>
+
         <Toaster />
       </div>
-      <Footer />
+      <Suspense fallback={<Loading />}>
+        <Footer />
+      </Suspense>
     </ ThemeProvider>
   </>)
 }

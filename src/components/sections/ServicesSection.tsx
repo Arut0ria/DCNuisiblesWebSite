@@ -1,31 +1,32 @@
 import { Bird, Bug, Rat, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-
-const services = [
-  {
-    icon: <Rat />,
-    title: "Dératisation",
-    items: ["Élimination rats & souris", "Prévention rongeurs"],
-  },
-  {
-    icon: <Bug />,
-    title: "Désinsectisation",
-    items: ["Cafards/Blattes & fourmis", "Punaises de lit", "Guêpes & frelons"],
-  },
-  {
-    icon: <Bird />,
-    title: "Dépigeonnage",
-    items: ["Prévention pigeons", "Protection bâtiments"],
-  },
-  {
-    icon: <Zap />,
-    title: "Taupes & Campagnols",
-    items: ["Élimination taupes et campagnols", "Protection jardins et pelouses"],
-  },
-];
+import { useMemo } from "react";
 
 
 export default function ServicesSection() {
+  const services = useMemo(() => ([
+    {
+      icon: <Rat />,
+      title: "Dératisation",
+      items: ["Élimination rats & souris", "Prévention rongeurs"],
+    },
+    {
+      icon: <Bug />,
+      title: "Désinsectisation",
+      items: ["Cafards/Blattes & fourmis", "Punaises de lit", "Guêpes & frelons"],
+    },
+    {
+      icon: <Bird />,
+      title: "Dépigeonnage",
+      items: ["Prévention pigeons", "Protection bâtiments"],
+    },
+    {
+      icon: <Zap />,
+      title: "Taupes & Campagnols",
+      items: ["Élimination taupes et campagnols", "Protection jardins et pelouses"],
+    },
+  ]), []);
+
   return (<section id="services" className="
     grid grid-cols-1 gap-4
   ">

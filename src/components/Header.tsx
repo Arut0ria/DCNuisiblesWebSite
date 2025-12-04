@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import gsap from "gsap";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
+import scrollToSection from "./utils/ScrollTo";
+import { useGSAP } from "@gsap/react";
 
 function Header() {
   const headerRef = useRef<HTMLHeadElement | null>(null);
 
-  useEffect(() => {
-    if (!headerRef.current)
-      return;
+  useGSAP(() => {
+    if (!headerRef.current) return;
 
     gsap.fromTo(headerRef.current, {
       y: -300
@@ -18,16 +19,9 @@ function Header() {
       ease: "power3.out",
       delay: 0.5
     });
-  }, []);
+  }, { scope: headerRef });
 
-  function scrollToSection(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-
-  return (<header ref={headerRef} className="
+  return (<><header ref={headerRef} className="
     sticky w-full top-2
     flex justify-center flex-wrap
     z-10
@@ -42,18 +36,21 @@ function Header() {
       shadow-accent
       text-foreground
     ">
-      <li className="shrink-0"><img src="logo.png" alt="Logo de l'entreprise DC Nuisibles" /></li>
+      <li className="shrink-0"><img className="size-10" src="logo.webp" alt="Logo de l'entreprise DC Nuisibles" /></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("mission")}>Missions</Button></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("services")}>Services</Button></li>
       <li><Button variant="ghost" className="text-base lg:text-xl" onClick={() => scrollToSection("contact")}>Contact</Button></li>
       <li><ModeToggle /></li>
     </ul>
+  </header>
     <h1 className="
       basis-full text-center m-4 lg:m-8
     ">
-      DC Nuisibles
+      DC Nuisibles<br /><span className="text-xl font-medium">
+        Votre expert en désinsectisation et dératisation
+      </span>
     </h1>
-  </header>)
+  </>)
 }
 
 export default Header

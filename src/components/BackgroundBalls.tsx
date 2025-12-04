@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const gradients = [
   // "bg-orange-400",
@@ -10,9 +11,8 @@ const gradients = [
 export default function BackgroundBalls() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (!containerRef.current)
-      return;
+  useGSAP(() => {
+    if (!containerRef.current) return;
 
     const balls = containerRef.current.querySelectorAll(".background-ball");
 
@@ -40,7 +40,7 @@ export default function BackgroundBalls() {
         yoyo: true
       });
     });
-  });
+  }, { scope: containerRef });
 
   return (<div ref={containerRef} className="absolute inset-0 overflow-hidden">
     {Array.from({ length: 5 }).map((_, index) => (

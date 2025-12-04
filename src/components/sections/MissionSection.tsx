@@ -1,14 +1,9 @@
+import { Suspense } from "react";
 import LogoCanvas from "../LogoCanvas";
 import { Button } from "../ui/button";
+import scrollToSection from "../utils/ScrollTo";
 
 function MissionSection() {
-  function scrollToSection(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-
   return (
     <section id="mission" className="
       flex flex-wrap-reverse
@@ -46,7 +41,9 @@ function MissionSection() {
       </div>
 
       <div className="h-[20em] md:h-[30em]">
-        <LogoCanvas />
+        <Suspense>
+          <LogoCanvas />
+        </Suspense>
       </div>
     </section>);
 }
