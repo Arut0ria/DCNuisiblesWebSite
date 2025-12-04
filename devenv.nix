@@ -12,6 +12,9 @@ in
     git
     pnpm
     nodejs
+    
+    # To compress model textures
+    ktx-tools 
   ];
 
   # https://devenv.sh/scripts/
