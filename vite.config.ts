@@ -23,4 +23,30 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'three',
+      '@react-three/fiber',
+      '@react-three/drei'
+    ]
+  },
+  build: {
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            // Splits each package in node_modules into its own chunk.
+            return id.toString().split('node_modules/.pnpm/')[1].split('/')[0];
+          }
+
+          if (id.includes('/src/components/ui')) {
+            return 'ui';
+          }
+        }
+      }
+    }
+  }
 })
