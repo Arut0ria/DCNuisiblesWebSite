@@ -6,11 +6,6 @@ import { Separator } from './components/ui/separator'
 import { Toaster } from './components/ui/sonner'
 import Loading from './components/Spinner'
 
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-
-gsap.registerPlugin(useGSAP);
-
 function App() {
   const ServicesSection = lazy(() => import('./components/sections/ServicesSection'));
 

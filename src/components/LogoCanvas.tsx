@@ -19,7 +19,7 @@ function LogoModel() {
 
   const { gl } = useThree();
 
-  const { scene } = useGLTF("/logo_draco_optimal_text.glb", true, undefined, (loader) => {
+  const { scene } = useGLTF("/src/assets/logo_draco_optimal_text.glb", true, undefined, (loader) => {
     loader.setKTX2Loader(ktx2Loader.detectSupport(gl));
     loader.setDRACOLoader(draco);
   });

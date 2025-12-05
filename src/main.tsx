@@ -1,8 +1,10 @@
 import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import '/src/style/index.css'
 import App from './App.tsx'
 import gsap from 'gsap'
+
+import './style/index.css'
+import './style/fonts.css'
 
 // If user move away from window we stop gsap
 document.addEventListener("visibilitychange", () => {
