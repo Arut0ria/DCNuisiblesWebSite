@@ -64,7 +64,7 @@ p {
 
 a {
   @apply
-    text-orange-400
+    dark:text-orange-400 text-blue-600
     underline
     hover:cursor-pointer
 }
